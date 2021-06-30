@@ -43,7 +43,7 @@ jobs:
           echo C
           security find-identity -v
           echo D
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k build.keychain1 build.keychain
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k build.keychain build.keychain1
           echo E
           /usr/bin/codesign --force -s <identity-id> dist/Subreddit.app -v
           rm -fr *.p12
