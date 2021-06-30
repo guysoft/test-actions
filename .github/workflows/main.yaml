@@ -48,7 +48,7 @@ jobs:
           echo F
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k build.keychain build.keychain1
           echo G
-          /usr/bin/codesign --force -s ${MACOS_CERTIFICATE_ID} dist/Subreddit.app -v
+          /usr/bin/codesign --force -s "Developer ID Application: Guy Sheffer (K8784SVNX8)" dist/Subreddit.app -v
           echo H
           rm -fr *.p12
       - uses: actions/upload-artifact@v2
