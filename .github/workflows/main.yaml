@@ -28,10 +28,6 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Build app
         run: python3 setup.py py2app
-      - uses: actions/upload-artifact@v2
-        with:
-          name: backupfriend-client-macos
-          path: dist/
       - name: Codesign executable
         env:
           MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
@@ -43,3 +39,7 @@ jobs:
           security import certificate.p12 -k build.keychain -P ${MACOS_CERTIFICATE_PWD} -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k <your-password> build.keychain
           /usr/bin/codesign --force -s <identity-id> dist/Subreddit.app -v
+      - uses: actions/upload-artifact@v2
+        with:
+          name: backupfriend-client-macos
+          path: dist/
