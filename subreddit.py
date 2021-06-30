@@ -1,5 +1,4 @@
 import wx
-import pkg_resources.py2_warn
 import requests, json
 import webbrowser
 class AppWindow(wx.Frame):    
