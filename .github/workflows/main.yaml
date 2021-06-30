@@ -16,7 +16,7 @@ jobs:
       - name: Install rdiff-backup
         run: |
           brew update
-          brew install python
+          brew install python3
           brew install rdiff-backup
           brew upgrade
       - uses: actions/checkout@v2
@@ -25,13 +25,13 @@ jobs:
         #with:
           #python-version: ${{ matrix.python-version }}
       - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+        run: python3 -c "import sys; print(sys.version)"
       - name: Install pip
-        run: python -m pip install py2app
+        run: python3 -m pip install py2app
       - name: upgrade pip
-        run: python -m pip install --upgrade pip
+        run: python3 -m pip install --upgrade pip
       - name: install requirements.txt
-        run: python -m pip install -r requirements.txt
+        run: python3 -m pip install -r requirements.txt
       - name: Build app
         run: python3 setup.py py2app
       - name: Codesign executable
