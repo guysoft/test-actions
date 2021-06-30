@@ -9,7 +9,7 @@ jobs:
       matrix:
         # os: [ubuntu-latest, macos-latest, windows-latest]
         os: [macos-latest]
-        python-version: ['3.9']
+        python-version: ['3.8']
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -44,8 +44,6 @@ jobs:
           echo D
           security import certificate.p12 -k build.keychain1 -P ${MACOS_CERTIFICATE_PWD} -T /usr/bin/codesign
           echo E
-          security find-identity -v
-          echo F
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k build.keychain build.keychain1
           echo G
           find / -name liblzma.5.dylib
