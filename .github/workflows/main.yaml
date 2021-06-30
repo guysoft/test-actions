@@ -1,4 +1,4 @@
-name: Package Application with Pyinstaller
+name: Package Application for Mac OS X
 on: [push, pull_request]
 
 
@@ -11,6 +11,13 @@ jobs:
         os: [macos-latest]
         python-version: ['3.9']
     steps:
+      - uses: actions/checkout@master
+
+      - name: Install rdiff-backup
+        run: |
+          brew update
+          brew install rdiff-backup
+          brew upgrade
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
