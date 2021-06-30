@@ -34,12 +34,14 @@ jobs:
           MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
         run: |
           echo ${MACOS_CERTIFICATE} | base64 --decode > certificate.p12
-          security create-keychain -p build.keychain build.keychain1 security default-keychain -s build.keychain1
+          security create-keychain -p build.keychain build.keychain1
+          security default-keychain -s build.keychain1
           security unlock-keychain -p build.keychain build.keychain1
           security import certificate.p12 -k build.keychain1 -P ${MACOS_CERTIFICATE_PWD} -T /usr/bin/codesign
           security find-identity -v
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k build.keychain1 build.keychain
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k build.keychain1
           /usr/bin/codesign --force -s <identity-id> dist/Subreddit.app -v
+          rm -fr *.p12
       - uses: actions/upload-artifact@v2
         with:
           name: backupfriend-client-macos
