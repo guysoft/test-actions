@@ -38,7 +38,7 @@ jobs:
           security unlock-keychain -p build.keychain build.keychain1
           security import certificate.p12 -k build.keychain1 -P ${MACOS_CERTIFICATE_PWD} -T /usr/bin/codesign
           security find-identity -v
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k build.keychain1 build.keychain
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k build.keychain build.keychain1
           /usr/bin/codesign --force -s <identity-id> dist/Subreddit.app -v
       - uses: actions/upload-artifact@v2
         with:
