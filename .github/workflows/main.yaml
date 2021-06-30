@@ -34,7 +34,7 @@ jobs:
           MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
         run: |
           echo ${MACOS_CERTIFICATE} | base64 --decode > certificate.p12
-          security create-keychain -p build.keychain build.keychain1 security default-keychain -s build.keychain
+          security create-keychain -p build.keychain build.keychain1 security default-keychain -s build.keychain1
           security unlock-keychain -p build.keychain build.keychain1
           security import certificate.p12 -k build.keychain1 -P ${MACOS_CERTIFICATE_PWD} -T /usr/bin/codesign
           security find-identity -v
