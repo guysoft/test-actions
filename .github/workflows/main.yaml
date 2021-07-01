@@ -52,6 +52,8 @@ jobs:
           echo E
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k build.keychain build.keychain1
           echo G
+          find / -name liblzma.5.dylib
+          echo H
           /usr/bin/codesign --force --deep -s "Developer ID Application: Guy Sheffer (K8784SVNX8)" dist/Subreddit.app -v
           echo H
           rm -fr *.p12
